@@ -1,43 +1,24 @@
-# n.zsh
+# zsh-n
 
-a zsh plugin for auto-switching node versions based on project environment using [n](https://github.com/tj/n)
+A zsh plugin for auto-switching node versions based on project environment or to LTS using [n](https://github.com/tj/n)
 
-## installation
+## Prerequisites
 
-### prerequisites
+This plugin is dependant on [n](https://github.com/tj/n), so it means you need to have [n](https://github.com/tj/n) installed.  
+Check their docs for installing it.
 
-- jq
-
-```bash
-brew install jq
-```
-
-### antigen
-
-```bash
-antigen bundle gretzky/n.zsh
-```
-
-### zplugin
-
-```bash
-zplugin load gretzky/n.zsh
-```
-
-### zgen
-
-```bash
-zgen load gretzky/n.zsh
-```
+## Installation
 
 ### oh-my-zsh
 
-- cd `~/.oh-my-zsh/custom/plugins`
-- `git clone https://github.com/gretzky/n.zsh`
-- add `n.zsh` to `plugins=()` in your `.zshrc`
+- `git clone https://github.com/chuvisco88/zsh-n ${ZSH_CUSTOM:-~/.oh-my-zsh/custom)/plugins/zsh-n`
+- add `zsh-n` to `plugins=()` in your `.zshrc`
 
-## usage
+### Others (like antigen, zplugin or zgen)
 
-on its own, `n.zsh` will check for a `package.json` in the current directory. if it exists, it checks and reads the value of the node engine, and then switches to that version using n.
+I don't have experience with those, so I haven't tested it with them.
 
-if the node engine reads 'greater than', `n` switches to node stable. otherwise, it switches to the specified version.
+## Usage
+
+The plugin internally uses `n auto` to automatically switch to the node version provided in the local .n-node-version, .node-version, .nvmrc, or package.json file.  
+If no such file is existing, it will switch to node LTS (if not already on it).
